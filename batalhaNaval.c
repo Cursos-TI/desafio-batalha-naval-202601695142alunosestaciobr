@@ -1,40 +1,92 @@
 #include <stdio.h>
 
-// Desafio Batalha Naval - MateCheck
-// Este código inicial serve como base para o desenvolvimento do sistema de Batalha Naval.
-// Siga os comentários para implementar cada parte do desafio.
+/*Variaveis universais para utilização em qualquer função*/
+/*Contabiliza a quantidade de loops para realizar a quebra de linha */
+int linha, coluna;
 
-int main() {
-    // Nível Novato - Posicionamento dos Navios
-    // Sugestão: Declare uma matriz bidimensional para representar o tabuleiro (Ex: int tabuleiro[5][5];).
-    // Sugestão: Posicione dois navios no tabuleiro, um verticalmente e outro horizontalmente.
-    // Sugestão: Utilize `printf` para exibir as coordenadas de cada parte dos navios.
+/*Função que retorna as letras d o tabuleiro*/
+void horizontal_tabuleiro(){
 
-    // Nível Aventureiro - Expansão do Tabuleiro e Posicionamento Diagonal
-    // Sugestão: Expanda o tabuleiro para uma matriz 10x10.
-    // Sugestão: Posicione quatro navios no tabuleiro, incluindo dois na diagonal.
-    // Sugestão: Exiba o tabuleiro completo no console, mostrando 0 para posições vazias e 3 para posições ocupadas.
+    /*Declaração da Variavel letra para receber os valores definidos do tabuleiro*/
+    char letras[1][10] = {
+        {'A','B','C','D','E','F','G','H','I','J'}
+    };
 
-    // Nível Mestre - Habilidades Especiais com Matrizes
-    // Sugestão: Crie matrizes para representar habilidades especiais como cone, cruz, e octaedro.
-    // Sugestão: Utilize estruturas de repetição aninhadas para preencher as áreas afetadas por essas habilidades no tabuleiro.
-    // Sugestão: Exiba o tabuleiro com as áreas afetadas, utilizando 0 para áreas não afetadas e 1 para áreas atingidas.
+    /*Loop que acionado apenas uma vez faz varedura todas colunas preservando linhas*/
+    for (size_t i = 0; i < 10; i++)
+    {
+        printf("\t%c", letras[0][i]);
+    }
 
-    // Exemplos de exibição das habilidades:
-    // Exemplo para habilidade em cone:
-    // 0 0 1 0 0
-    // 0 1 1 1 0
-    // 1 1 1 1 1
+    printf("\n\n");
+
+}
+
+/*Função que indica a numeração do tabuleiro*/
+void vertical_tabuleiro(){
+
+    /*Variavel que traz os valores numericos das linhas*/
+    int number[1][10] = {
+        {1,2,3,4,5,6,7,8,9,10}
+    };
+
+    /*Loop responsável varredura das linhas impressão em tela*/
+    for (size_t i = 0; i < 1; i++){
+
+        printf("%d ->>", number[0][coluna]);
+
+    }
+
+}
+
+/*Função que traz o mar representado por 0 barco representado por 3*/
+void mar(){
+
+    /*Variavel que traz todos os números representa o mar*/
+    int mares[10][10] = {
+        {0,0,0,0,0,0,0,0,0,0},
+        {0,3,3,3,0,0,0,0,0,0},
+        {0,0,0,0,0,0,0,0,0,0},
+        {0,0,0,0,0,3,0,0,0,0},
+        {0,0,0,0,0,3,0,0,0,0},
+        {0,0,0,0,0,3,0,0,0,0},
+        {0,0,0,0,0,0,0,0,0,0},
+        {0,0,0,0,0,0,0,0,0,0},
+        {0,0,0,0,0,0,0,0,0,0},
+        {0,0,0,0,0,0,0,0,0,0}        
+    };
+
+    /*Loopa ninhado responsável varrer linhas "Linha" Colunas "i"*/
+    for (size_t index = 0; index < 1; index++)
+    {
+        for (size_t i = 0; i < 10; i++)
+    {
+        printf("\t%d", mares[linha][i]);
+    }
+        printf("\n\n");
+    }
     
-    // Exemplo para habilidade em octaedro:
-    // 0 0 1 0 0
-    // 0 1 1 1 0
-    // 0 0 1 0 0
+}
 
-    // Exemplo para habilidade em cruz:
-    // 0 0 1 0 0
-    // 1 1 1 1 1
-    // 0 0 1 0 0
+int main(){
+
+    coluna = 0;
+    linha = 0;
+
+    horizontal_tabuleiro();//Chama a função que tráz o cabeçalho.
+
+    /*Loop que intercala as funções acionando para representação no terminal*/
+    for (size_t i = 0; i < 10; i++)
+    {
+        vertical_tabuleiro();
+        mar();
+        
+        /*incrementa o valor na variavel para pular entre linhas e colunas.*/
+        coluna++;
+        linha++;
+    }
+    
+    printf("\n");
 
     return 0;
 }
