@@ -45,23 +45,66 @@ void mar(){
     /*Variavel que traz todos os números representa o mar*/
     int mares[10][10] = {
         {0,0,0,0,0,0,0,0,0,0},
-        {0,3,3,3,0,0,0,0,0,0},
-        {0,0,0,0,0,0,0,0,0,0},
-        {0,0,0,0,0,3,0,0,0,0},
-        {0,0,0,0,0,3,0,0,0,0},
-        {0,0,0,0,0,3,0,0,0,0},
         {0,0,0,0,0,0,0,0,0,0},
         {0,0,0,0,0,0,0,0,0,0},
         {0,0,0,0,0,0,0,0,0,0},
-        {0,0,0,0,0,0,0,0,0,0}        
+        {0,0,0,0,0,0,0,0,0,0},
+        {0,0,0,0,0,0,0,0,0,0},
+        {0,0,0,0,0,0,0,0,0,0},
+        {0,3,3,3,0,0,0,0,3,0},
+        {0,0,0,0,0,0,0,0,3,0},
+        {0,0,0,0,0,0,0,0,3,0}        
     };
 
     /*Loopa ninhado responsável varrer linhas "Linha" Colunas "i"*/
-    for (size_t index = 0; index < 1; index++)
+    for (size_t index = 0; index < 1; index++)//Faz uma unica varedura de linha "index"
     {
-        for (size_t i = 0; i < 10; i++)
+        for (size_t i = 0; i < 10; i++)//Faz dez vareduras de colunas "i"
     {
-        printf("\t%d", mares[linha][i]);
+
+        if (coluna == i)//Navios diagonal principal 0|0 a 9|9
+        {
+            switch (i)// DEfine os três pontos na fiagonal do navio.
+            {
+            case 1:
+                printf("\t3");
+                break;
+            case 2:
+                printf("\t3");
+                break;
+            case 3:
+                printf("\t3");
+                break;    
+            default:
+                printf("\t%d", mares[linha][i]);
+                break;
+            }
+            
+        }
+        else if (coluna + i == 8)//Navios diagonal secundaria soma 0|9 a 9|0
+        {
+            switch (i)// DEfine os três pontos na fiagonal do navio.
+            {
+            case 6:
+                printf("\t3");
+                break;
+            case 7:
+                printf("\t3");
+                break;
+            case 8:
+                printf("\t3");
+                break;    
+            default:
+                printf("\t%d", mares[linha][i]);
+                break;
+            }
+        }
+        else
+        {
+            printf("\t%d", mares[linha][i]);
+        }
+        
+
     }
         printf("\n\n");
     }
