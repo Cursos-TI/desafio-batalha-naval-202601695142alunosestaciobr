@@ -1,8 +1,12 @@
 #include <stdio.h>
 
+/*Define o tamanho da matriz*/
+#define LINHA 10
+#define COLUNA 10
+
 /*Variaveis universais para utilização em qualquer função*/
 /*Contabiliza a quantidade de loops para realizar a quebra de linha */
-int linha, coluna;
+int coluna_cont;
 
 /*Função que retorna as letras d o tabuleiro*/
 void horizontal_tabuleiro(){
@@ -33,7 +37,7 @@ void vertical_tabuleiro(){
     /*Loop responsável varredura das linhas impressão em tela*/
     for (size_t i = 0; i < 1; i++){
 
-        printf("%d ->>", number[0][coluna]);
+        printf("%d ->>", number[0][coluna_cont]);
 
     }
 
@@ -43,69 +47,40 @@ void vertical_tabuleiro(){
 void mar(){
 
     /*Variavel que traz todos os números representa o mar*/
-    int mares[10][10] = {
-        {0,0,0,0,0,0,0,0,0,0},
-        {0,0,0,0,0,0,0,0,0,0},
-        {0,0,0,0,0,0,0,0,0,0},
-        {0,0,0,0,0,0,0,0,0,0},
-        {0,0,0,0,0,0,0,0,0,0},
-        {0,0,0,0,0,0,0,0,0,0},
-        {0,0,0,0,0,0,0,0,0,0},
-        {0,3,3,3,0,0,0,0,3,0},
-        {0,0,0,0,0,0,0,0,3,0},
-        {0,0,0,0,0,0,0,0,3,0}        
-    };
+    int mares[LINHA][COLUNA];
 
-    /*Loopa ninhado responsável varrer linhas "Linha" Colunas "i"*/
-    for (size_t index = 0; index < 1; index++)//Faz uma unica varedura de linha "index"
+    /*Loopa ninhado responsável varrer linhas "Linha" "i"*/
+    for (size_t i = 0; i < LINHA; i++)
     {
-        for (size_t i = 0; i < 10; i++)//Faz dez vareduras de colunas "i"
-    {
-
-        if (coluna == i)//Navios diagonal principal 0|0 a 9|9
-        {
-            switch (i)// DEfine os três pontos na fiagonal do navio.
+        vertical_tabuleiro();//Chama a função para impressão do cabeçalho lateral numeros
+    
+        /*Loopa ninhado responsável varrer linhas "Linha" "i"*/
+        for (size_t j = 0; j < COLUNA; j++)
+        {       
+                /*Simbolo da Cruz*/
+            if ((j == 1 && i >= 0 && i < 5) || 
+                (i == 2 && j >= 0 && j < 3) || 
+                /*Simbolo Piramide*/
+                (j == 4 && i == 6)          ||
+                (j >= 3 && j <= 5 && i == 7)|| 
+                (j >= 2 && j <= 6 && i == 8)|| 
+                (j >= 1 && j <= 7 && i == 9)||
+                /*Sombolo Losango*/
+                (j == 7 && i == 0)          ||
+                (j >= 6 && j <= 8 && i == 1)||
+                (j >= 5 && j <= 9 && i == 2)||
+                (j >= 6 && j <= 8 && i == 3)||
+                (j == 7 && i == 4))
             {
-            case 1:
-                printf("\t3");
-                break;
-            case 2:
-                printf("\t3");
-                break;
-            case 3:
-                printf("\t3");
-                break;    
-            default:
-                printf("\t%d", mares[linha][i]);
-                break;
+                printf("\t-");
             }
-            
-        }
-        else if (coluna + i == 8)//Navios diagonal secundaria soma 0|9 a 9|0
-        {
-            switch (i)// DEfine os três pontos na fiagonal do navio.
+            else
             {
-            case 6:
-                printf("\t3");
-                break;
-            case 7:
-                printf("\t3");
-                break;
-            case 8:
-                printf("\t3");
-                break;    
-            default:
-                printf("\t%d", mares[linha][i]);
-                break;
+                printf("\t0");
             }
+                
         }
-        else
-        {
-            printf("\t%d", mares[linha][i]);
-        }
-        
-
-    }
+        coluna_cont++;//incrementa o valor para avançar nas posições das linhas
         printf("\n\n");
     }
     
@@ -113,21 +88,8 @@ void mar(){
 
 int main(){
 
-    coluna = 0;
-    linha = 0;
-
-    horizontal_tabuleiro();//Chama a função que tráz o cabeçalho.
-
-    /*Loop que intercala as funções acionando para representação no terminal*/
-    for (size_t i = 0; i < 10; i++)
-    {
-        vertical_tabuleiro();
-        mar();
-        
-        /*incrementa o valor na variavel para pular entre linhas e colunas.*/
-        coluna++;
-        linha++;
-    }
+    horizontal_tabuleiro();//Chama a função que tráz o cabeçalho superior letras.
+    mar();
     
     printf("\n");
 
